@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>海上漂浮风机平台鲁棒安全PPO控制 — Poster</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+    background: #0a0e1a;
+    color: #e0e6f0;
+    -webkit-font-smoothing: antialiased;
+  }
+  .poster {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 40px;
+    background: linear-gradient(165deg, #0a0e1a 0%, #111832 40%, #0d1528 100%);
+    border: 1px solid #ffffff10;
+  }
+
+  /* Header */
+  .header { text-align: center; margin-bottom: 40px; }
+  .header .badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #00b4d8, #0077b6);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.25;
+    background: linear-gradient(135deg, #e0e6f0, #00b4d8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .header .subtitle {
+    font-size: 14px;
+    color: #8899aa;
+    font-weight: 400;
+  }
+
+  /* Sections grid */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+  .card {
+    background: #ffffff06;
+    border: 1px solid #ffffff12;
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .card h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #00b4d8;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card h2 .icon { font-size: 18px; }
+  .card p, .card li {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #b0bec5;
+  }
+  .card ul { list-style: none; padding: 0; }
+  .card ul li::before { content: '▸ '; color: #00b4d8; }
+
+  /* MDP table */
+  .mdp-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .mdp-table th, .mdp-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #ffffff0a;
+    text-align: left;
+  }
+  .mdp-table th {
+    color: #00b4d8;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .mdp-table td { color: #b0bec5; }
+  .mdp-table code {
+    background: #ffffff0a;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 11px;
+    color: #90caf9;
+  }
+
+  /* Results table */
+  .results-section { margin-bottom: 24px; }
+  .results-section .card { padding: 24px; }
+  .results-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .results-table th, .results-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #ffffff0a;
+    text-align: center;
+  }
+  .results-table th {
+    color: #00b4d8;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .results-table td { color: #e0e6f0; }
+  .results-table .winner {
+    color: #4caf50;
+    font-weight: 700;
+  }
+  .results-table .loss { color: #ef5350; }
+
+  /* Highlights */
+  .highlight-row { display: flex; gap: 16px; margin-bottom: 24px; }
+  .highlight-box {
+    flex: 1;
+    background: #ffffff06;
+    border: 1px solid #ffffff12;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .highlight-box .number {
+    font-size: 36px;
+    font-weight: 800;
+    color: #00b4d8;
+  }
+  .highlight-box .number.green { color: #4caf50; }
+  .highlight-box .number.red { color: #ef5350; }
+  .highlight-box .number.amber { color: #ffc107; }
+  .highlight-box .label {
+    font-size: 11px;
+    color: #8899aa;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  /* Key findings */
+  .findings { margin-bottom: 24px; }
+  .finding {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px dashed #ffffff0a;
+  }
+  .finding:last-child { border-bottom: none; }
+  .finding .num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00b4d8, #0077b6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .finding .text {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #b0bec5;
+  }
+  .finding .text strong { color: #e0e6f0; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #ffffff0a;
+    font-size: 11px;
+    color: #556677;
+  }
+  .footer a { color: #00b4d8; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="badge">深度强化学习 · 项目展示</div>
+    <h1>海上漂浮风机平台的<br>鲁棒安全PPO控制</h1>
+    <div class="subtitle">Robust and Safe PPO Control for Floating Offshore Wind Platforms</div>
+  </div>
+
+  <!-- Key Numbers -->
+  <div class="highlight-row">
+    <div class="highlight-box">
+      <div class="number green">3 / 4</div>
+      <div class="label">PD 控制器胜出的场景数</div>
+    </div>
+    <div class="highlight-box">
+      <div class="number">0%</div>
+      <div class="label">PD 在分布内场景的故障率</div>
+    </div>
+    <div class="highlight-box">
+      <div class="number">7×</div>
+      <div class="label">PD 比 PPO 控制能耗更低</div>
+    </div>
+    <div class="highlight-box">
+      <div class="number">500K</div>
+      <div class="label">PPO 训练步数（每种子）</div>
+    </div>
+  </div>
+
+  <!-- Row 1: MDP & Architecture -->
+  <div class="grid">
+    <div class="card">
+      <h2><span class="icon">🎯</span> MDP 问题公式化</h2>
+      <table class="mdp-table">
+        <thead><tr><th>维度</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td><strong>状态 (4D)</strong></td><td>θ, θ̇, 风扰动, 波浪扰动</td></tr>
+          <tr><td><strong>动作 (1D)</strong></td><td>连续控制力 a ∈ [-1, 1]</td></tr>
+          <tr><td><strong>动力学</strong></td><td>质量-弹簧-阻尼欧拉积分</td></tr>
+          <tr><td><strong>奖励</strong></td><td><code>-1·θ² - 0.5·θ̇² - 0.1·F² + penalty</code></td></tr>
+          <tr><td><strong>终止</strong></td><td>|θ| > 0.3 rad 或 max_steps=1000</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h2><span class="icon">🤖</span> 控制器配置</h2>
+      <ul>
+        <li><strong>NoControl</strong> — 零动作基线，暴露无控动态</li>
+        <li><strong>PD</strong> — 经典反馈 (Kp=5.0, Kd=2.0)，动作裁剪到 [-1,1]</li>
+        <li><strong>PPO</strong> — MlpPolicy, lr=3e-4, gamma=0.99, 2×64隐藏层</li>
+        <li><strong>PPO+安全</strong> — PPO + 一步前向预测安全过滤器</li>
+        <li><strong>PPO-随机化</strong> — 域随机化训练，每回合随机化物理参数</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Row 2: Scenarios -->
+  <div class="grid">
+    <div class="card">
+      <h2><span class="icon">🌊</span> 风况场景</h2>
+      <table class="mdp-table">
+        <thead><tr><th>场景</th><th>风σ</th><th>波σ</th><th>描述</th></tr></thead>
+        <tbody>
+          <tr><td>正常风况</td><td>0.3</td><td>0.2</td><td>基准运行条件</td></tr>
+          <tr><td>强风况</td><td>0.6</td><td>0.4</td><td>增强风浪活动</td></tr>
+          <tr><td>可变风况</td><td>0.3</td><td>0.2</td><td>风均值线性递增到0.5</td></tr>
+          <tr><td>分布外</td><td>0.9</td><td>0.7</td><td>极端扰动，鲁棒性测试</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h2><span class="icon">🔬</span> 评估协议</h2>
+      <ul>
+        <li><strong>种子数</strong>：3（seed 0, 1, 2）</li>
+        <li><strong>训练步数</strong>：500,000 / 种子 / 控制器</li>
+        <li><strong>场景数</strong>：4（正常/强/可变/OOD）</li>
+        <li><strong>评估回合</strong>：20 回合 / 场景</li>
+        <li><strong>指标</strong>：avg_return, mean_abs_theta, failure_rate, control_energy</li>
+        <li><strong>工具栈</strong>：Gymnasium, NumPy, Stable-Baselines3, PyTorch</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Results Table -->
+  <div class="results-section">
+    <div class="card">
+      <h2><span class="icon">📊</span> 第三轮评估结果（3种子 × 50万步 × 4场景）</h2>
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>场景</th>
+            <th>胜者</th>
+            <th>avg_return</th>
+            <th>故障率</th>
+            <th>控制能耗</th>
+            <th>评估</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>正常风况</td>
+            <td class="winner">PD ✓</td>
+            <td>-2.59</td>
+            <td class="winner">0.0%</td>
+            <td class="winner">25.10</td>
+            <td>PD 优于所有PPO变体 4.6 倍</td>
+          </tr>
+          <tr>
+            <td>强风况</td>
+            <td class="winner">PD ✓</td>
+            <td>-10.10</td>
+            <td class="winner">0.0%</td>
+            <td class="winner">98.80</td>
+            <td>PD 领先最佳PPO变体 3 倍</td>
+          </tr>
+          <tr>
+            <td>可变风况</td>
+            <td class="winner">PD ✓</td>
+            <td>-10.90</td>
+            <td class="winner">0.0%</td>
+            <td class="winner">154.35</td>
+            <td>所有PPO变体故障率约33%</td>
+          </tr>
+          <tr>
+            <td>分布外</td>
+            <td class="winner">PPO+Safety</td>
+            <td class="winner">-30.19</td>
+            <td class="loss">40.0%</td>
+            <td>-</td>
+            <td>比PD好18%，但故障率更高</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Key Findings -->
+  <div class="card findings">
+    <h2><span class="icon">💡</span> 关键发现</h2>
+    <div class="finding">
+      <div class="num">1</div>
+      <div class="text"><strong>经典PD在低维线性系统中具有解析接近最优的性质。</strong>这不是RL的失败——这科学上重要的"没有免费午餐"定理的实证验证。对于低维类线性的控制系统，PD在数学上已接近最优解。</div>
+    </div>
+    <div class="finding">
+      <div class="num">2</div>
+      <div class="text"><strong>PPO存在极端的种子依赖性问题。</strong>种子0在所有变体的可变风和OOD场景中灾难性失败（100%故障率），而种子1-2有时能与PD竞争。这意味着单种子RL评估结论完全不可靠，揭示了RL部署的根本性风险。</div>
+    </div>
+    <div class="finding">
+      <div class="num">3</div>
+      <div class="text"><strong>安全过滤PPO在OOD场景中显示潜力。</strong>以18%回报优势险胜PD，但伴随更高故障率（40% vs 35%）和近乎恒定的安全干预（93.5%干预率），实际价值仍需审慎评估。</div>
+    </div>
+    <div class="finding">
+      <div class="num">4</div>
+      <div class="text"><strong>RL的价值体现在高维、非线性或多目标场景中。</strong>本项目的发现恰恰证明了诚实评估的重要性——当经典方法优于学习方法时，如实报告同样是高质量的科研贡献。</div>
+    </div>
+  </div>
+
+  <!-- Project Structure -->
+  <div class="grid" style="margin-top: 24px;">
+    <div class="card">
+      <h2><span class="icon">📁</span> 技术栈</h2>
+      <ul>
+        <li><strong>Python</strong> — 核心编程语言</li>
+        <li><strong>Gymnasium</strong> — 环境接口标准</li>
+        <li><strong>NumPy</strong> — 数值计算与扰动生成</li>
+        <li><strong>Stable-Baselines3</strong> — PPO算法实现</li>
+        <li><strong>PyTorch</strong> — 神经网络后端</li>
+        <li><strong>Matplotlib</strong> — 结果可视化</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2><span class="icon">🚀</span> 使用方法</h2>
+      <p style="font-size:12px; font-family: monospace; color: #90caf9; line-height: 2">
+        $ pip install -r requirements.txt<br>
+        $ pytest tests/<br>
+        $ python -m src.training.train_ppo \<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;--timesteps 500000 --seed 42<br>
+        $ python -m src.evaluation.evaluate_agents \<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;--episodes 20<br>
+        $ python -m src.analysis.plot_results
+      </p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>OffshoreWind_ControlRL — 项目展示 &nbsp;|&nbsp; MIT License</p>
+    <p style="margin-top: 8px;">本项目为学习和展示目的的简化仿真复现，不声称与实际漂浮式海上风力机系统具有工程保真度。</p>
+    <p style="margin-top: 4px;">代码完全原创，参考 DeepSense、RL-PSF、FloatingFarmYaw 的公开研究概念。</p>
+  </div>
+
+</div>
+</body>
+</html>

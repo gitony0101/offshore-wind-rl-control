@@ -1,0 +1,32 @@
+# RL Training Audit Summary
+
+Files Inspected:
+- src/training/train_ppo.py
+- src/training/train_randomized_ppo.py
+- results/logs/
+- results/models/
+- src/envs/floating_platform_env.py
+- src/analysis/plot_results.py
+
+Key Findings:
+1. CLI Arguments: Both scripts support --timesteps, --seed, --scenario, --model-name, --save-log, --log-dir as required
+2. Model Saving: Models correctly saved to results/models/ with appropriate naming
+3. Logging Integrity: VecMonitor logs saved correctly and can be parsed by plot_results.py
+4. Seed Handling: Seeds properly applied to environment, numpy, torch (via SB3), and stable-baselines3
+5. Training Device: Uses CPU by default (no GPU option)
+6. Hyperparameters: Standard PPO parameters documented in code but lacking explanatory comments
+7. Timestep Verification: 500K training corresponds to --timesteps 500000 (models exist with this naming)
+8. Domain Randomization: Properly randomizes stiffness, damping, mass, wind_std, wave_std at every reset
+9. Code Duplication: High duplication between train_ppo.py and train_randomized_ppo.py (~80%)
+10. Artifact Consistency: Model names match saved files; no path mismatches observed
+11. Smoke Safety: --smoke-test mode provides fast, safe validation (1000 timesteps)
+
+Files Created:
+- RL_Training_Audit.md (detailed audit report)
+- RL_Training_Audit_Summary.txt (this summary)
+
+Issues Encountered:
+- Default timesteps is 50,000 but 500K models exist - potential confusion
+- No GPU utilization option
+- Limited hyperparameter documentation
+- High code duplication between training scripts

@@ -1,0 +1,10 @@
+# Dependencies for OffshoreWind_ControlRL MVP
+# Versions pinned for reproducibility based on audited environment (May 2026)
+# Tested on Apple Silicon with CPU-only execution
+gymnasium==1.2.3
+numpy==1.26.4
+stable-baselines3==2.8.0
+torch==2.13.0
+pandas==2.2.2
+matplotlib==3.9.2
+pytest==9.0.3
