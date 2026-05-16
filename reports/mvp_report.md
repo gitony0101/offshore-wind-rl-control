@@ -572,4 +572,4 @@ The most honest reading is that safety-filtered PPO demonstrates a potentially u
 
 ## Disclaimer
 
-> This is a simplified simulation based reproduction for learning and portfolio purposes. It does not claim engineering fidelity to real floating offshore wind turbine systems. The results described in this report are based on a highly abstract environment and should not be interpreted as predictions of real-world turbine behavior.
+> This is a simplified simulation based prototype for learning and portfolio purposes. It does not claim engineering fidelity to real floating offshore wind turbine systems. The results described in this report are based on a highly abstract environment and should not be interpreted as predictions of real-world turbine behavior.

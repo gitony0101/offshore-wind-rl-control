@@ -80,7 +80,7 @@ This project is inspired by public information and related open-source projects,
 
 | Source | Concept Borrowed | This Project's Implementation |
 |--------|-----------------|------------------------------|
-| **DeepSense** | Deep learning applied to ocean/sensor data | Entire codebase independently written |
+| **DeepSense** | Deep learning applied to ocean/sensor data | Conceptual inspiration only; all code is original |
 | **RL-PSF** | Concept of safety-aware RL / predictive safety filtering | Safety filter algorithm is independently designed |
 | **FloatingFarmYaw** | RL for floating wind control | Environment, dynamics, and RL formulation are original |
 
@@ -105,7 +105,7 @@ When discussing external projects in documentation:
 - [x] Metrics CSV output (evaluation_summary.csv + evaluation_summary_round3.csv)
 - [x] Trajectory CSV output (per-scenario)
 - [x] Result plotting script (6+ plot types including Round 3 figures)
-- [x] README with reproduction instructions
+- [x] README with setup and usage instructions
 - [x] Methodology document (`methodology.md`)
 - [x] MVP report (`reports/mvp_report.md`)
 - [x] Round 3 verification audit (`reports/round3_result_audit.md`)
@@ -122,4 +122,4 @@ When discussing external projects in documentation:
 
 ## Disclaimer
 
-> **This is a simplified simulation based reproduction for learning and portfolio purposes. It does not claim engineering fidelity to real floating offshore wind turbine systems.**
+> **This is a simplified simulation based prototype for learning and portfolio purposes. It does not claim engineering fidelity to real floating offshore wind turbine systems.**

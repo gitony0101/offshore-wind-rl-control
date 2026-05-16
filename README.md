@@ -2,7 +2,7 @@
 
 **Reinforcement Learning for Control of Floating Offshore Wind Platforms**
 
-> **Disclaimer**: This is a simplified simulation-based reproduction for learning and portfolio purposes. It does not claim engineering fidelity to real floating offshore wind turbine systems.
+> **Disclaimer**: This is a simplified simulation-based prototype for learning and portfolio purposes. It does not claim engineering fidelity to real floating offshore wind turbine systems.
 
 ---
 
@@ -269,12 +269,7 @@ The only scenario where a PPO variant wins. avg_return of -30.19 beats PD's -36.
 
 ## Evidence Boundary
 
-This project is inspired by public research efforts including DeepSense, RL-PSF, and FloatingFarmYaw. **However, all implementation code is independently and originally written.** No code was copied from any external repository.
-
-Key inspirations vs. original work:
-- **DeepSense**: General concept of deep learning for ocean/sensor data — all code is original
-- **RL-PSF**: Safety-aware RL concept — safety filter is independently designed
-- **FloatingFarmYaw**: RL for floating wind concept — environment and RL formulation are original
+This project was developed as an original course-scale prototype inspired by public research challenges in floating offshore wind control, safe reinforcement learning, and simulation-based decision support. The implementation, simplified dynamics, experiments, metrics, and conclusions are original to this repository.
 
 See [methodology.md](methodology.md) for the full evidence boundary statement.
 
@@ -322,7 +317,7 @@ MIT License
 
 ## Disclaimer
 
-> This is a simplified simulation based reproduction for learning and portfolio purposes. It does not claim engineering fidelity to real floating offshore wind turbine systems. The simulation uses an abstract mass-spring-damper model with Gaussian noise disturbances — it is not a realistic offshore wind engineering simulator and should not be used for engineering design, safety certification, or operational decision-making.
+> This is a simplified simulation based prototype for learning and portfolio purposes. It does not claim engineering fidelity to real floating offshore wind turbine systems. The simulation uses an abstract mass-spring-damper model with Gaussian noise disturbances — it is not a realistic offshore wind engineering simulator and should not be used for engineering design, safety certification, or operational decision-making.
 
 ## Known Modeling Limitations
 

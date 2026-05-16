@@ -10,7 +10,7 @@ The training scripts support full reproducibility through:
 - Deterministic environment resets when seeded
 - Identical hyperparameters across runs when seeds match
 
-To reproduce the six 500K models (PPO and PPO-Randomized for seeds 0,1,2):
+To recreate the six 500K models (PPO and PPO-Randomized for seeds 0,1,2):
 ```bash
 # Standard PPO
 python -m src.training.train_ppo --timesteps 500000 --seed 0 --scenario normal_wind

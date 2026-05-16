@@ -19,7 +19,7 @@ This project draws conceptual inspiration from several publicly available resear
 
 | Source | Concept Used | Original Implementation |
 |--------|-------------|------------------------|
-| **DeepSense** | General concept of deep learning for ocean/sensor data | Entire codebase is original |
+| **DeepSense** | General concept of deep learning for ocean/sensor data | Conceptual inspiration only; all code is original |
 | **RL-PSF** | Idea of reinforcement learning with safety/predictive safety filtering | Safety filter logic is independently designed |
 | **FloatingFarmYaw** | Concept of RL for floating wind farm control (yaw) | Environment, dynamics, and RL formulation are original |
 
@@ -608,6 +608,6 @@ The following extensions are recommended for future iterations:
 
 ## Disclaimer
 
-> **This is a simplified simulation based reproduction for learning and portfolio purposes. It does not claim engineering fidelity to real floating offshore wind turbine systems.**
+> **This is a simplified simulation based prototype for learning and portfolio purposes. It does not claim engineering fidelity to real floating offshore wind turbine systems.**
 >
 > The results presented in this project are qualitative demonstrations of RL concepts applied to a simplified floating offshore wind platform model. They should not be interpreted as predictions of real-world turbine behaviour, nor should they be used for engineering design, safety certification, or operational decision-making.
